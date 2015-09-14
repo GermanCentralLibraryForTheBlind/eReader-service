@@ -40,28 +40,47 @@ function ensureAuthenticated(req, res, next) {
 /***************************************************************************
  *  register                                                               *
  ***************************************************************************/
-router.get('/register', function (req, res) {
-    res.render('register', {});
-});
+//router.get('/register', function (req, res) {
+//    
+//    if(!hostCanRegister(req))
+//      return res.status(403).send('Register is Forbidden.');
+//    
+//    res.render('register', {});
+//});
+//
+//router.post('/register', function (req, res, next) {
+//    
+//    if(!hostCanRegister(req))
+//        return res.status(403).send('Register is Forbidden.');
+//    
+//    Account.register(new Account({username: req.body.username}), req.body.password, function (err, account) {
+//        if (err) {
+//            return res.render("register", {info: "Sorry. That username already exists. Try again."});
+//        }
+//
+//        passport.authenticate('local')(req, res, function () {
+//            req.session.save(function (err) {
+//                if (err) {
+//                    return next(err);
+//                }
+//                res.redirect('/');
+//            });
+//        });
+//    });
+//});
 
-router.post('/register', function (req, res, next) {
-    Account.register(new Account({username: req.body.username}), req.body.password, function (err, account) {
-        if (err) {
-            return res.render("register", {info: "Sorry. That username already exists. Try again."});
-        }
-
-        passport.authenticate('local')(req, res, function () {
-            req.session.save(function (err) {
-                if (err) {
-                    return next(err);
-                }
-                res.redirect('/');
-            });
-        });
-    });
-});
-
-/***************************************************************************
+//function hostCanRegister(req) {
+//
+//var ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
+//
+//    console.log(ip);
+//    if (ip === '::ffff:192.168.1.135')
+//      return true;
+// 
+//    return false;  
+//}
+//    
+ /***************************************************************************
  *  login                                                                  *
  ***************************************************************************/
 router.get('/login', function (req, res) {

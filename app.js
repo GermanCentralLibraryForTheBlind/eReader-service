@@ -34,9 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
-//app.use('/eReader', express.static(path.join(__dirname, 'eReader')));
 
-//app.use(express.static(path.join(__dirname, 'eReader')));
 
 app.use('/', routes);
 
