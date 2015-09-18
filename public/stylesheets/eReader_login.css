@@ -52,7 +52,7 @@ body {
   margin-left: 20px;
 }
 
-div.header {
+header {
   -webkit-transition: 6s;
   -moz-transition: 6s;
   -o-transition: 6s;
@@ -61,19 +61,19 @@ div.header {
   padding: 30px 0 20px;
 }
 
-.header h1#main-title {
+header h1#main-title {
   color: #fff;
   font-weight: 300;
   font-size: 2.5em;
 }
 
-.header h3 {
+header h3 {
   color: #b1eef7;
   font-style: italic;
   font-weight: 300;
 }
 
-.header h3 code {
+header h3 code {
   font-style: normal !important;
   background-color: rgba(255, 255, 255, 0.5);
   font-weight: 300;
@@ -81,7 +81,7 @@ div.header {
   margin: 0px 5px;
 }
 
-div.main.container {
+section {
   padding: 50px 0;
 }
 
@@ -170,6 +170,11 @@ span.tooltip {
   opacity: 255
 }
 
+
+
+
+/*---------------a11y----------------*/
+
 span.tooltip[aria-hidden='true'] {
   display: none;
 }
@@ -186,4 +191,29 @@ span.tooltip[aria-hidden='false'] {
   border-radius: 25px;
   border: 1px solid #303d6c;
   padding: 20px;
+}
+
+
+/* set up hidden tooltip */
+[role="tooltip"] {
+  display: none;
+  padding: 0.25em;
+  margin: 0;
+  color: #fff;
+  background: #EF8100;
+  width: 100%;
+  z-index: 2;
+}
+
+/* reveal associated tooltip on focus of preceeding input */
+input:focus + [role="tooltip"] {
+  display: block;
+  position: absolute;
+  top: 100%;
+}
+
+input:focus + [role="tooltip"] {
+  display: block;
+  position: absolute;
+  top: 100%;
 }

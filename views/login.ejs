@@ -13,9 +13,8 @@
         document.getElementsByClassName('header')[0].style.backgroundColor = '#303d6c';
     }, 0);
 </script>
-<div class="default-page">
 
-    <div class="header">
+    <header>
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 <h1 id="main-title" class="container">DZB eReader Demo</h1>
@@ -26,40 +25,66 @@
                 <a href="http://www.dzb.de/" title="DZB Hauptseite"><span class="invisible">DZB Hauptseite</span></a>
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="main container">
-        <li>
-            <form id="login" class="form-horizontal col-md-6 border" action="/login" method="POST"
-                  aria-describedby="loginFailed">
+    <section class="main container">
+            <form id="login" 
+                  class="form-horizontal col-md-6 border" 
+                  action="/login" 
+                  method="POST"
+                  aria-describedby="loginFailed" 
+                  role=form>
+                
                 <!--ARIA-->
-             <span id="loginFailed" role="tooltip" class="tooltip <% if(JSON.stringify(message[0]) == undefined) { %>hidden<% } %>"
+             <span id="loginFailed" 
+                   role="tooltip" 
+                   class="tooltip <% if(JSON.stringify(message[0]) == undefined) { %>hidden<% } %>"
                    aria-hidden= <%if(JSON.stringify(message[0]) == undefined) { %>"true"<% } else { %>"false"<% } %>>
                    Ihr Login ist fehlgeschlagen (<%=JSON.stringify(message[0])%>)</span>
 
                 <div class="form-group">
                     <label for="email" class="control-label col-xs-2">Email</label>
                     <div class="col-xs-10">
-                        <input name="username" type="email" class="form-control" id="email" placeholder="Email">
+                        <input name="username" 
+                               type="email" 
+                               class="form-control" 
+                               id="email" 
+                               placeholder="Email"
+                               role=textbox 
+                               aria-describedby="username-tip" 
+                               required>
+                        <div role="tooltip" id="username-tip">Ihr Nutzername ist Ihre Emailadresse</div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="control-label col-xs-2">Password</label>
                     <div class="col-xs-10">
-                        <input name="password" type="password" class="form-control" id="password"
-                               placeholder="Passwort">
+                        <input name="password" 
+                               type="password" 
+                               class="form-control" 
+                               id="password"
+                               placeholder="Passwort" 
+                               role=textbox
+                               aria-describedby="password-tip"
+                               required>
+                        <div role="tooltip" id="password-tip">Das Passwort wurde Ihnen zugschickt.</div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <button type="submit" value="submit" class="btn btn-primary">Login</button>
-                        <small><a href="">Sie haben Ihr Passwort vergessen?</a></small>
+                        <button type="submit" 
+                                value="submit"
+                                class="btn btn-primary" 
+                                role=button 
+                                aria-controls="email"
+                                >Login</button>
+                        <small>
+                            <a href="" role=link>Sie haben Ihr Passwort vergessen?</a>
+                        </small>
                     </div>
                 </div>
             </form>
-        </li>
-    </div>
-</div>
+    </section>
 <script src="javascripts/jquery.min.js"></script>
 <script src="javascripts/login.js"></script>
 </body>
