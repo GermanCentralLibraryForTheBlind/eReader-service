@@ -28,8 +28,6 @@
                 <a href="http://www.dzb.de/" title="DZB Hauptseite"><span class="invisible">DZB Hauptseite</span></a>
             </div>
         </div>
-
-
     </div>
 
     <div class="main container">
@@ -37,9 +35,9 @@
             <form id="login" class="form-horizontal col-md-6 border" action="/login" method="POST"
                   aria-describedby="loginFailed">
                 <!--ARIA-->
-      <span id="loginFailed" role="tooltip" class="tooltip hidden<% if(message[0] === "") { %> hidden <% } %>"
-            aria-hidden=<% if(typeof message[0] !== "") { %> "false" <% } else { %> "true" <% } %>>
-                Ihr Login ist fehlgeschlagen</span>
+      <span id="loginFailed" role="tooltip" class="tooltip <% if(JSON.stringify(message[0]) == undefined) { %>hidden<% } %>"
+            aria-hidden= <%if(JSON.stringify(message[0]) == undefined) { %>"true"<% } else { %>"false"<% } %>>
+                Ihr Login ist fehlgeschlagen (<%=JSON.stringify(message[0])%>)</span>
 
                 <div class="form-group">
                     <label for="email" class="control-label col-xs-2">Email</label>
