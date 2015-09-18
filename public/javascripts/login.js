@@ -1,6 +1,4 @@
 (function () {
-
-
     $("input").keydown(function (e) {
             hideLoginFailedToolTip();
     });

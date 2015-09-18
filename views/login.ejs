@@ -13,8 +13,6 @@
         document.getElementsByClassName('header')[0].style.backgroundColor = '#303d6c';
     }, 0);
 </script>
-<script src="javascripts/login.js"></script>
-
 <div class="default-page">
 
     <div class="header">
@@ -35,9 +33,9 @@
             <form id="login" class="form-horizontal col-md-6 border" action="/login" method="POST"
                   aria-describedby="loginFailed">
                 <!--ARIA-->
-      <span id="loginFailed" role="tooltip" class="tooltip <% if(JSON.stringify(message[0]) == undefined) { %>hidden<% } %>"
-            aria-hidden= <%if(JSON.stringify(message[0]) == undefined) { %>"true"<% } else { %>"false"<% } %>>
-                Ihr Login ist fehlgeschlagen (<%=JSON.stringify(message[0])%>)</span>
+             <span id="loginFailed" role="tooltip" class="tooltip <% if(JSON.stringify(message[0]) == undefined) { %>hidden<% } %>"
+                   aria-hidden= <%if(JSON.stringify(message[0]) == undefined) { %>"true"<% } else { %>"false"<% } %>>
+                   Ihr Login ist fehlgeschlagen (<%=JSON.stringify(message[0])%>)</span>
 
                 <div class="form-group">
                     <label for="email" class="control-label col-xs-2">Email</label>
@@ -62,6 +60,7 @@
         </li>
     </div>
 </div>
-
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/login.js"></script>
 </body>
 </html>
