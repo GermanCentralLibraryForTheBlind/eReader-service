@@ -57,7 +57,7 @@ header {
   -moz-transition: 6s;
   -o-transition: 6s;
   transition: 6s;
-  background: rgb(32, 56, 118) /*url(http://www.dzb.de/img/logos/dzb_sprite_home.png) no-repeat 42% bottom*/;
+  background: #025252 /*url(http://www.dzb.de/img/logos/dzb_sprite_home.png) no-repeat 42% bottom*/;
   padding: 30px 0 20px;
 }
 
@@ -191,7 +191,10 @@ span.tooltip[aria-hidden='false'] {
 .border {
   border-radius: 25px;
   border: 1px solid #303d6c;
-  padding: 20px;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  padding-left: 20px;
 }
 
 
