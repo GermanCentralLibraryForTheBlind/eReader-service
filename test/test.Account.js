@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 var Account = require("../models/account.js");
 var db;
 
-describe('Account', function() {
+// todo : test bookshelf
+
+
+describe('account', function() {
 
     before(function(done) {
         db = mongoose.connect('mongodb://localhost/test');

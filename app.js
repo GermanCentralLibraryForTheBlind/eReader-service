@@ -1,19 +1,18 @@
 // dependencies
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var flash = require('connect-flash');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
-var app = express();
+const  express = require('express'),
+    path = require('path'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    flash = require('connect-flash'),
+    routes = require('./routes/index'),
+//var users = require('./routes/users');
+//var favicon = require('serve-favicon');
+    app = express(),
+    account = require('./models/account');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,12 +36,12 @@ app.use(flash());
 
 
 app.use('/', routes);
+app.listen(3000);
 
 // passport config
-var Account = require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+passport.use(new LocalStrategy(account.authenticate()));
+passport.serializeUser(account.serializeUser());
+passport.deserializeUser(account.deserializeUser());
 
 // mongoose
 mongoose.connect('mongodb://localhost/eReader');

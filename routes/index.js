@@ -1,9 +1,10 @@
-var express = require('express');
-var passport = require('passport');
-var Account = require('../models/account');
-var router = express.Router();
-var request = require('request');
-var eReaderURL = 'http://dzbvm-badi.dzbnet.local:8081';
+const express = require('express'),
+    passport = require('passport'),
+    request = require('request'),
+    Account = require('../models/account'),
+    Bookshelfs = require('../models/bookshelf'),
+    router = express.Router(),
+    eReaderURL = 'http://dzbvm-badi.dzbnet.local:8081';
 
 
 /***************************************************************************
@@ -21,11 +22,47 @@ router.get('/epub_content/*', ensureAuthenticated, eReaderRoute);
 router.get('/matcher', ensureAuthenticated, eReaderRoute);
 router.get('/search', ensureAuthenticated, eReaderRoute);
 
+
 function eReaderRoute(req, res) {
 
-    var url = eReaderURL + req.url;
-    //console.log(url);
-    req.pipe(request(url)).pipe(res);
+    const url = eReaderURL + req.url;
+
+    Bookshelfs.findById(req.user.bookshelf, function (err, bookshelf) {
+
+        if (bookshelf != null && bookshelf.name !== '' && req.url === '/') {
+            injectEpubContentPath(url, res, bookshelf.name);
+            return;
+        }
+        // readable.pipe(destination)
+        request(url).pipe(res);
+
+        //console.log(bookshelf);
+
+    });
+}
+
+
+// inject the user specific path for his own 
+// bookshelf configuration
+function injectEpubContentPath(url, res, epubs) {
+
+    var req = request(url);
+    var data = '';
+    const searchFor = "urlParams['epubs'] ? urlParams['epubs'] : undefined,";
+    const replaceWith = "'http://dzbvm-badi.dzbnet.local:8083/" + epubs + ".json',";
+
+    req.on('data', function (chunk) {
+        data += chunk;
+    });
+
+    req.on('end', function () {
+
+        data = data.replace(searchFor, replaceWith);
+        res.write(data);
+        res.end();
+        //console.log(data);
+    });
+
 }
 
 function ensureAuthenticated(req, res, next) {
@@ -33,41 +70,10 @@ function ensureAuthenticated(req, res, next) {
     //console.log("isAuthenticated  " + req.isAuthenticated());
     if (req.isAuthenticated())
         return next();
-    
+
     res.redirect('/login');
 }
 
-/***************************************************************************
- *  register                                                               *
- ***************************************************************************/
-//router.get('/register', function (req, res) {
-//    
-//    if(!hostCanRegister(req))
-//      return res.status(403).send('Register is Forbidden.');
-//    
-//    res.render('register', {});
-//});
-//
-//router.post('/register', function (req, res, next) {
-//    
-//    if(!hostCanRegister(req))
-//        return res.status(403).send('Register is Forbidden.');
-//    
-//    Account.register(new Account({username: req.body.username}), req.body.password, function (err, account) {
-//        if (err) {
-//            return res.render("register", {info: "Sorry. That username already exists. Try again."});
-//        }
-//
-//        passport.authenticate('local')(req, res, function () {
-//            req.session.save(function (err) {
-//                if (err) {
-//                    return next(err);
-//                }
-//                res.redirect('/');
-//            });
-//        });
-//    });
-//});
 
 //function hostCanRegister(req) {
 //
@@ -79,8 +85,8 @@ function ensureAuthenticated(req, res, next) {
 // 
 //    return false;  
 //}
-//    
- /***************************************************************************
+
+/***************************************************************************
  *  login                                                                  *
  ***************************************************************************/
 router.get('/login', function (req, res) {
