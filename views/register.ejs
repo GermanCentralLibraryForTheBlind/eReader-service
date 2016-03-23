@@ -8,6 +8,9 @@
 </head>
 <body>
 <h1>Register</h1>
+<a href='/bookshelf'>Bücherregale</a>
+
+
 
 
 <section class="main container">
@@ -17,7 +20,8 @@
           method="POST"
           aria-describedby="loginFailed"
           role=form>
-
+        <% if (typeof info != "undefined"){ %> <span class="tooltip"><%= info %></span> <% } %>
+        <% if (typeof success != "undefined"){ %> <span class="tooltip" style="background: green"><%= success %></span> <% } %>
         <div class="form-group">
             <label for="email" class="control-label col-xs-2">E-Mail</label>
 
@@ -45,12 +49,24 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="bookshelf" class="control-label col-xs-2">Bücherregal</label>
+
+            <div class="col-xs-10">
+                <select id="bookshelf" name="bookshelf">
+                    <option value="">--Wähle ein Bücherregal--</option>
+                    <% for(var i=0; i < bookshelfs.length; i++) { %>
+                    <option value="<%= bookshelfs[i]._id %>"><%= bookshelfs[i].name %></option>
+                    <% }; %>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
                 <button type="submit"
                         value="submit"
                         class="btn btn-primary"
                         role=button
-                        >register
+                        >Eintragen
                 </button>
             </div>
         </div>

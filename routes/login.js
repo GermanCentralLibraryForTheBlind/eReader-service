@@ -1,7 +1,6 @@
 const express = require('express'),
     passport = require('passport'),
     request = require('request'),
-    Account = require('../models/account'),
     Bookshelfs = require('../models/bookshelf'),
     router = express.Router(),
     eReaderURL = 'http://dzbvm-badi.dzbnet.local:8081';

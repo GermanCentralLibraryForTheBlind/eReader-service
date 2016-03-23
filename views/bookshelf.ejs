@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bücherregal</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css'/>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+    <link rel='stylesheet' href='/stylesheets/eReader_login.css'/>
+</head>
+<body>
+<h1>Register</h1>
+
+<a href='/register'>Register</a>
+
+<section class="main container">
+    <form id="bookshelf"
+          class="form-horizontal col-md-6 border"
+          action="/bookshelf"
+          method="POST"
+          aria-describedby="loginFailed"
+          role=form>
+
+        <div class="form-group">
+            <label for="email" class="control-label col-xs-2">Name Bücherregal</label>
+
+            <div class="col-xs-10">
+                <input name="name"
+                       type="string"
+                       class="form-control"
+                       placeholder="Name Bücherregal"
+                       role=textbox
+                       required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit"
+                        value="submit"
+                        class="btn btn-primary"
+                        role=button
+                        >Bücherregal hinzufügen
+                </button>
+            </div>
+        </div>
+    </form>
+</section>
+</body>
+</html>
